@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>CRM Funnel</title></head>
+<body>
+    <h1>Leads</h1>
+    <a href="{{ url_for('add_lead') }}">Add Lead</a>
+    <ul>
+    {% for lead in leads %}
+        <li>
+            {{ lead.name }} ({{ lead.stage }}) - {{ lead.email }}
+            <form action="{{ url_for('update_lead', lead_id=lead.id) }}" method="post" style="display:inline;">
+                <input type="number" name="score" value="{{ lead.score }}">
+                <label>Champion<input type="checkbox" name="champion" {% if lead.champion %}checked{% endif %}></label>
+                <label>Contract Signed<input type="checkbox" name="contract_signed" {% if lead.contract_signed %}checked{% endif %}></label>
+                <button type="submit">Update</button>
+            </form>
+        </li>
+    {% endfor %}
+    </ul>
+    <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+    <a href="{{ url_for('analytics') }}">Analytics</a>
+</body>
+</html>
