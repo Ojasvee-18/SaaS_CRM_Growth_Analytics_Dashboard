@@ -1,12 +1,79 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Analytics Dashboard</h2>
-<h3>Sales Funnel</h3>
-<img src="{{ funnel_img }}" alt="Sales Funnel">
-
-<h3>CAC by Channel</h3>
-<img src="{{ cac_img }}" alt="CAC by Channel">
-
-<h3>LTV:CAC Ratio by Channel</h3>
-<img src="{{ ltv_img }}" alt="LTV:CAC Ratio">
+<div class="container py-4">
+    <h2 class="mb-4 text-primary fw-bold">Sales Funnel Dashboard</h2>
+    <div class="row g-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Sales Funnel Stages</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if funnel_img %}
+                        <img src="data:image/png;base64,{{ funnel_img }}" alt="Sales Funnel" class="img-fluid rounded">
+                    {% else %}
+                        <p class="text-muted">No funnel data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">LTV:CAC Ratio</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if ltv_img %}
+                        <img src="data:image/png;base64,{{ ltv_img }}" alt="LTV:CAC Ratio" class="img-fluid rounded">
+                    {% else %}
+                        <p class="text-muted">No LTV:CAC data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0">Customer Acquisition Cost (CAC)</h5>
+                </div>
+                <div class="card-body text-center">
+                    {% if cac_img %}
+                        <img src="data:image/png;base64,{{ cac_img }}" alt="CAC Analysis" class="img-fluid rounded">
+                    {% else %}
+                        <p class="text-muted">No CAC data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">Underperforming Channel</h5>
+                </div>
+                <div class="card-body">
+                    {% if underperforming %}
+                        <p class="mb-0">
+                            <span class="fw-semibold">{{ underperforming.Channel }}</span>
+                            <span class="badge bg-danger ms-2">CAC: ₹{{ "%.2f"|format(underperforming['Cost per Conversion']) }}</span>
+                        </p>
+                    {% else %}
+                        <p class="text-muted">No channel data available.</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Optimization Experiments</h5>
+                </div>
+                <div class="card-body">
+                    {% if experiments %}
+                        <ol class="mb-0">
+                            {% for exp in experiments %}
+                                <li>{{ exp }}</li>
+                            {% endfor %}
+                        </ol>
+                    {% else %}
+                        <p class="text-muted">No experiments to display.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

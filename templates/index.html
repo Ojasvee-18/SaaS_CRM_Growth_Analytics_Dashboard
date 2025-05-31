@@ -1,12 +1,37 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Leads Management</h1>
-{% for lead in leads %}
-    <div style="border:1px solid #ccc; margin:10px; padding:10px;">
-        <b>{{ lead.name }}</b> ({{ lead.email }})<br>
-        Company: {{ lead.company }} | Stage: {{ lead.stage }} | Owner: {{ lead.owner }}<br>
-        <a href="{{ url_for('edit_lead', id=lead.id) }}">Edit</a> |
-        <a href="{{ url_for('nurture_lead', id=lead.id) }}">Nurture</a>
-    </div>
-{% endfor %}
+<div class="container py-4">
+    <h2 class="mb-4 text-primary fw-bold">Leads Management</h2>
+    {% if leads %}
+        <div class="row row-cols-1 g-3">
+            {% for lead in leads %}
+            <div class="col">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title mb-1">{{ lead.name }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ lead.email }}</h6>
+                        <p class="mb-2">
+                            <span class="fw-semibold">Company:</span> {{ lead.company or 'N/A' }}<br>
+                            <span class="fw-semibold">Stage:</span> {{ lead.stage or 'N/A' }}<br>
+                            <span class="fw-semibold">Owner:</span> {{ lead.owner or 'N/A' }}
+                        </p>
+                        <div class="d-flex align-items-center">
+                            <a href="{{ url_for('edit_lead', id=lead.id) }}" class="btn btn-sm btn-outline-primary me-2">Edit</a>
+                            <a href="{{ url_for('nurture_lead', id=lead.id) }}" class="btn btn-sm btn-outline-success me-2">Nurture</a>
+                            <form action="{{ url_for('delete_lead', id=lead.id) }}" method="post" class="d-inline"
+                                  onsubmit="return confirm('Are you sure you want to delete this lead?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            No leads found. <a href="{{ url_for('add_lead') }}" class="alert-link">Add a new lead</a>.
+        </div>
+    {% endif %}
+</div>
 {% endblock %}

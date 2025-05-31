@@ -1,20 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Edit Lead</h2>
-<form method="post">
-    Name: <input type="text" name="name" value="{{ lead.name }}" required><br>
-    Email: <input type="email" name="email" value="{{ lead.email }}" required><br>
-    Company: <input type="text" name="company" value="{{ lead.company }}"><br>
-    Source: <input type="text" name="source" value="{{ lead.source }}"><br>
-    Industry: <input type="text" name="industry" value="{{ lead.industry }}"><br>
-    Score: <input type="number" name="score" value="{{ lead.score }}"><br>
-    Deal Size: <input type="number" name="deal_size" value="{{ lead.deal_size }}"><br>
-    Objections: <input type="text" name="objections" value="{{ lead.objections }}"><br>
-    Decision Date: <input type="text" name="decision_date" value="{{ lead.decision_date }}"><br>
-    Demo Booked: <input type="checkbox" name="demo_booked" {% if lead.demo_booked %}checked{% endif %}><br>
-    Resource Downloaded: <input type="checkbox" name="resource_downloaded" {% if lead.resource_downloaded %}checked{% endif %}><br>
-    Champion Identified: <input type="checkbox" name="champion" {% if lead.champion %}checked{% endif %}><br>
-    Contract Signed: <input type="checkbox" name="contract_signed" {% if lead.contract_signed %}checked{% endif %}><br>
-    <button type="submit">Update Lead</button>
-</form>
+<div class="container mt-4" style="max-width: 600px;">
+    <h2 class="mb-4 text-primary fw-bold">Edit Lead</h2>
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ lead.name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ lead.email }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input type="text" class="form-control" id="company" name="company" value="{{ lead.company }}">
+        </div>
+        <div class="mb-3">
+            <label for="source" class="form-label">Source</label>
+            <input type="text" class="form-control" id="source" name="source" value="{{ lead.source }}">
+        </div>
+        <div class="mb-3">
+            <label for="industry" class="form-label">Industry</label>
+            <input type="text" class="form-control" id="industry" name="industry" value="{{ lead.industry }}">
+        </div>
+        <div class="mb-3">
+            <label for="score" class="form-label">Score</label>
+            <input type="number" class="form-control" id="score" name="score" value="{{ lead.score }}">
+        </div>
+        <div class="mb-3">
+            <label for="deal_size" class="form-label">Deal Size</label>
+            <input type="number" class="form-control" id="deal_size" name="deal_size" value="{{ lead.deal_size }}">
+        </div>
+        <div class="mb-3">
+            <label for="objections" class="form-label">Objections</label>
+            <input type="text" class="form-control" id="objections" name="objections" value="{{ lead.objections }}">
+        </div>
+        <div class="mb-3">
+            <label for="decision_date" class="form-label">Decision Date</label>
+            <input type="date" class="form-control" id="decision_date" name="decision_date" value="{{ lead.decision_date }}">
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="demo_booked" name="demo_booked" {% if lead.demo_booked %}checked{% endif %}>
+            <label class="form-check-label" for="demo_booked">Demo Booked</label>
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="resource_downloaded" name="resource_downloaded" {% if lead.resource_downloaded %}checked{% endif %}>
+            <label class="form-check-label" for="resource_downloaded">Resource Downloaded</label>
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="champion" name="champion" {% if lead.champion %}checked{% endif %}>
+            <label class="form-check-label" for="champion">Champion Identified</label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="contract_signed" name="contract_signed" {% if lead.contract_signed %}checked{% endif %}>
+            <label class="form-check-label" for="contract_signed">Contract Signed</label>
+        </div>
+        <button type="submit" class="btn btn-success w-100">Update Lead</button>
+    </form>
+</div>
 {% endblock %}

@@ -1,13 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Facebook Ad Creative Experiment</h2>
-<div id="experiment_chart"></div>
+<div class="container py-4" style="max-width: 800px;">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Facebook Ad Creative Experiment</h4>
+        </div>
+        <div class="card-body">
+            <div id="experiment_chart" class="mb-3"></div>
+            <!-- Optionally, add a description or legend below the chart -->
+            <p class="text-muted small">
+                Visualizing the performance of different Facebook ad creatives. Hover over the chart for details.
+            </p>
+        </div>
+    </div>
+</div>
 <!-- Include Plotly.js before using Plotly.newPlot -->
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script>
     var exp = JSON.parse('{{ graph_json | safe }}');
-    Plotly.newPlot('experiment_chart', exp.data, exp.layout);
+    Plotly.newPlot('experiment_chart', exp.data, exp.layout, {responsive: true});
 </script>
-
-
 {% endblock %}

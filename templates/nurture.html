@@ -1,13 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Nurturing Track for {{ lead.name }}</h2>
-<p><b>Track:</b> {{ track|capitalize }}-Intent</p>
-<ul>
-    {% for item in content %}
-        <li>{{ item.type|capitalize }}: {{ item.title or item.value }}</li>
-    {% endfor %}
-</ul>
-<h3>Personalized Email</h3>
-<p><b>Subject:</b> {{ personalized.email_subject }}</p>
-<p>{{ personalized.body }}</p>
+<div class="container py-4" style="max-width: 700px;">
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0">Nurturing Track for {{ lead.name }}</h4>
+        </div>
+        <div class="card-body">
+            <p class="mb-3"><span class="fw-semibold">Track:</span> {{ track|capitalize }}-Intent</p>
+            <ul class="list-group mb-4">
+                {% for item in content %}
+                    <li class="list-group-item">
+                        <span class="fw-semibold">{{ item.type|capitalize }}:</span>
+                        {{ item.title or item.value }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="mb-3">
+                <h5 class="text-primary">Personalized Email</h5>
+                <p class="mb-1"><span class="fw-semibold">Subject:</span> {{ personalized.email_subject }}</p>
+                <div class="alert alert-secondary">
+                    {{ personalized.body }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,20 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-<h2>Add New Lead</h2>
-<form method="post">
-    Name: <input type="text" name="name" required><br>
-    Email: <input type="email" name="email" required><br>
-    Company: <input type="text" name="company"><br>
-    Source: <input type="text" name="source"><br>
-    Industry: <input type="text" name="industry"><br>
-    Score: <input type="number" name="score" value="0"><br>
-    Deal Size: <input type="number" name="deal_size" value="0"><br>
-    Objections: <input type="text" name="objections"><br>
-    Decision Date: <input type="text" name="decision_date"><br>
-    Demo Booked: <input type="checkbox" name="demo_booked"><br>
-    Resource Downloaded: <input type="checkbox" name="resource_downloaded"><br>
-    Champion Identified: <input type="checkbox" name="champion"><br>
-    Contract Signed: <input type="checkbox" name="contract_signed"><br>
-    <button type="submit">Add Lead</button>
-</form>
+<div class="container mt-4" style="max-width: 600px;">
+    <h2 class="mb-4">Add New Lead</h2>
+    <form method="post" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="name" name="name" required placeholder="Enter full name">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email<span class="text-danger">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" required placeholder="example@email.com">
+        </div>
+        <div class="mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+        </div>
+        <div class="mb-3">
+            <label for="source" class="form-label">Source</label>
+            <input type="text" class="form-control" id="source" name="source" placeholder="e.g. Website, Referral">
+        </div>
+        <div class="mb-3">
+            <label for="industry" class="form-label">Industry</label>
+            <input type="text" class="form-control" id="industry" name="industry" placeholder="Industry type">
+        </div>
+        <div class="mb-3">
+            <label for="score" class="form-label">Score</label>
+            <input type="number" class="form-control" id="score" name="score" value="0" min="0">
+        </div>
+        <div class="mb-3">
+            <label for="deal_size" class="form-label">Deal Size</label>
+            <input type="number" class="form-control" id="deal_size" name="deal_size" value="0" min="0">
+        </div>
+        <div class="mb-3">
+            <label for="objections" class="form-label">Objections</label>
+            <input type="text" class="form-control" id="objections" name="objections" placeholder="Any objections?">
+        </div>
+        <div class="mb-3">
+            <label for="decision_date" class="form-label">Decision Date</label>
+            <input type="date" class="form-control" id="decision_date" name="decision_date">
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="demo_booked" name="demo_booked">
+            <label class="form-check-label" for="demo_booked">Demo Booked</label>
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="resource_downloaded" name="resource_downloaded">
+            <label class="form-check-label" for="resource_downloaded">Resource Downloaded</label>
+        </div>
+        <div class="form-check mb-2">
+            <input class="form-check-input" type="checkbox" id="champion" name="champion">
+            <label class="form-check-label" for="champion">Champion Identified</label>
+        </div>
+        <div class="form-check mb-3">
+            <input class="form-check-input" type="checkbox" id="contract_signed" name="contract_signed">
+            <label class="form-check-label" for="contract_signed">Contract Signed</label>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Add Lead</button>
+    </form>
+</div>
 {% endblock %}
