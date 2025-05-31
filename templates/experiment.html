@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Facebook Ad Creative Experiment</h2>
+<div id="experiment_chart"></div>
+<!-- Include Plotly.js before using Plotly.newPlot -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script>
+    var exp = JSON.parse('{{ graph_json | safe }}');
+    Plotly.newPlot('experiment_chart', exp.data, exp.layout);
+</script>
+
+
+{% endblock %}

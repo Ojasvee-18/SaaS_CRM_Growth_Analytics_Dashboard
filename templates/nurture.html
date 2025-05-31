@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Nurturing Track for {{ lead.name }}</h2>
+<p><b>Track:</b> {{ track|capitalize }}-Intent</p>
+<ul>
+    {% for item in content %}
+        <li>{{ item.type|capitalize }}: {{ item.title or item.value }}</li>
+    {% endfor %}
+</ul>
+<h3>Personalized Email</h3>
+<p><b>Subject:</b> {{ personalized.email_subject }}</p>
+<p>{{ personalized.body }}</p>
+{% endblock %}

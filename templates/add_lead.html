@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add New Lead</h2>
+<form method="post">
+    Name: <input type="text" name="name" required><br>
+    Email: <input type="email" name="email" required><br>
+    Company: <input type="text" name="company"><br>
+    Source: <input type="text" name="source"><br>
+    Industry: <input type="text" name="industry"><br>
+    Score: <input type="number" name="score" value="0"><br>
+    Deal Size: <input type="number" name="deal_size" value="0"><br>
+    Objections: <input type="text" name="objections"><br>
+    Decision Date: <input type="text" name="decision_date"><br>
+    Demo Booked: <input type="checkbox" name="demo_booked"><br>
+    Resource Downloaded: <input type="checkbox" name="resource_downloaded"><br>
+    Champion Identified: <input type="checkbox" name="champion"><br>
+    Contract Signed: <input type="checkbox" name="contract_signed"><br>
+    <button type="submit">Add Lead</button>
+</form>
+{% endblock %}

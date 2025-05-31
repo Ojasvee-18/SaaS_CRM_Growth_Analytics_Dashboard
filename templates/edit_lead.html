@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Lead</h2>
+<form method="post">
+    Name: <input type="text" name="name" value="{{ lead.name }}" required><br>
+    Email: <input type="email" name="email" value="{{ lead.email }}" required><br>
+    Company: <input type="text" name="company" value="{{ lead.company }}"><br>
+    Source: <input type="text" name="source" value="{{ lead.source }}"><br>
+    Industry: <input type="text" name="industry" value="{{ lead.industry }}"><br>
+    Score: <input type="number" name="score" value="{{ lead.score }}"><br>
+    Deal Size: <input type="number" name="deal_size" value="{{ lead.deal_size }}"><br>
+    Objections: <input type="text" name="objections" value="{{ lead.objections }}"><br>
+    Decision Date: <input type="text" name="decision_date" value="{{ lead.decision_date }}"><br>
+    Demo Booked: <input type="checkbox" name="demo_booked" {% if lead.demo_booked %}checked{% endif %}><br>
+    Resource Downloaded: <input type="checkbox" name="resource_downloaded" {% if lead.resource_downloaded %}checked{% endif %}><br>
+    Champion Identified: <input type="checkbox" name="champion" {% if lead.champion %}checked{% endif %}><br>
+    Contract Signed: <input type="checkbox" name="contract_signed" {% if lead.contract_signed %}checked{% endif %}><br>
+    <button type="submit">Update Lead</button>
+</form>
+{% endblock %}
